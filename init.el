@@ -31,14 +31,17 @@ values."
      emacs-lisp
      git
      ;; github
-     ;; html
+     html
      ;; ibuffer
      ;; javascript
-     ;; markdown
+     markdown
      org
-     ;; python
-     (ruby :variables
-           ruby-version-manager 'rvm)
+     (python :variables
+             python-enable-yapf-format-on-save t
+             )
+     ;; (ruby :variables
+           ;; ruby-version-manager 'rvm
+           ;; )
      ;; ruby-on-rails
      shell-scripts
      ;; sql
