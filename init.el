@@ -36,7 +36,6 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ivy
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       )
@@ -49,6 +48,7 @@ values."
      git
      ;; github
      html
+     ivy
      ;; ibuffer
      ;; javascript
      markdown
@@ -150,7 +150,7 @@ values."
                                :size 20
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.6)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -310,16 +310,16 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-;;  (setq powerline-default-separator 'arrow)
-;;  (spaceline-compile)
-;;  ;; 打开缩进线
-;;  (spacemacs/toggle-indent-guide-globally-on)
-;;  ;; 显示所有层级缩进线
-;;  (setq indent-guide-recursive t)
-;;  ;; 缩进线字符
-;;  (setq indent-guide-char "|")
-;;  ;; 打开80字符提示线
-;;  (turn-on-fci-mode)
+  (setq powerline-default-separator 'arrow)
+  (spaceline-compile)
+  ;; 打开缩进线
+  (spacemacs/toggle-indent-guide-globally-on)
+  ;; 显示所有层级缩进线
+  (setq indent-guide-recursive t)
+  ;; 缩进线字符
+  (setq indent-guide-char "|")
+  ;; 打开80字符提示线
+  (turn-on-fci-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
