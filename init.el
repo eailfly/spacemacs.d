@@ -43,19 +43,19 @@ values."
      (chinese :variables
               chinese-enable-youdao-dict t
               )
-;;     django
+     ;; django
      emacs-lisp
      git
      ;; github
      html
      ivy
      ;; ibuffer
-     ;; javascript
+     javascript
      markdown
      org
-;;     (python :variables
-;;             python-enable-yapf-format-on-save t
-;;             )
+     ;; (python :variables
+     ;;         python-enable-yapf-format-on-save t
+     ;;         )
      (ruby :variables
            ruby-version-manager 'rvm
            )
