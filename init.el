@@ -47,6 +47,9 @@ values."
      (chinese :variables
               chinese-enable-youdao-dict t
               )
+     (colors :variables
+             colors-enable-rainbow-indentifiers t
+            )
      ;; django
      emacs-lisp
      git
@@ -150,7 +153,9 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Fantasque Sans Mono"
+   dotspacemacs-default-font '(
+                               ;; "Fantasque Sans Mono"
+                               "Ubuntu Mono"
                                :size 20
                                :weight normal
                                :width normal
@@ -314,18 +319,28 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; 设置powerline样式
   (setq powerline-default-separator 'arrow)
   (spaceline-compile)
+  ;; 打开80字符提示线
+  ;; (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  (global-fci-mode 1)
+  (setq fci-rule-column 120)
   ;; 打开缩进线
   (spacemacs/toggle-indent-guide-globally-on)
-  ;; 显示所有层级缩进线
-  (setq indent-guide-recursive t)
+  ;; 显示所有层级缩进线 TODO: Cause indent-guide not work, wait to fix.
+  ;; (setq indent-guide-recursive t)
   ;; 缩进线字符
   (setq indent-guide-char "|")
-  ;; 打开80字符提示线
-  (turn-on-fci-mode)
   ;; JS不检查分号
   (setq js2-strict-missing-semi-warning nil)
+  ;; CSS颜色自动显示
+  (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
+  ;; 设置chinese-pyin
+  (setq default-input-method "chinese-pyim")
+  (global-set-key (kbd "C-\|") 'toggle-input-method)
+  (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -337,7 +352,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-tern dash-functional tern smartparens helm avy flycheck-pos-tip flycheck helm-core projectile names chinese-word-at-point rake inflections org alert log4e gntp markdown-mode haml-mode gitignore-mode magit magit-popup git-commit with-editor web-completion-data company chinese-pyim-basedict pos-tip inf-ruby yasnippet packed anaconda-mode pythonic pinyinlib ace-jump-mode auto-complete wgrep smex ivy-hydra counsel-projectile counsel swiper ivy youdao-dictionary ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spacemacs-theme spaceline smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quickrun quelpa pyvenv pytest pyenv-mode py-yapf projectile-rails popwin pony-mode pip-requirements persp-mode paradox pangu-spacing page-break-lines orgit org-repo-todo org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-w3m helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flx-ido fish-mode find-by-pinyin-dired fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav define-word cython-mode company-web company-statistics company-shell company-quickhelp company-anaconda column-enforce-mode clean-aindent-mode chruby chinese-pyim bundler buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
+    (chinese-pyim-greatdict rainbow-mode rainbow-identifiers color-identifiers-mode iedit anzu company-tern dash-functional tern smartparens helm avy flycheck-pos-tip flycheck helm-core projectile names chinese-word-at-point rake inflections org alert log4e gntp markdown-mode haml-mode gitignore-mode magit magit-popup git-commit with-editor web-completion-data company chinese-pyim-basedict pos-tip inf-ruby yasnippet packed anaconda-mode pythonic pinyinlib ace-jump-mode auto-complete wgrep smex ivy-hydra counsel-projectile counsel swiper ivy youdao-dictionary ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spacemacs-theme spaceline smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quickrun quelpa pyvenv pytest pyenv-mode py-yapf projectile-rails popwin pony-mode pip-requirements persp-mode paradox pangu-spacing page-break-lines orgit org-repo-todo org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-w3m helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flx-ido fish-mode find-by-pinyin-dired fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav define-word cython-mode company-web company-statistics company-shell company-quickhelp company-anaconda column-enforce-mode clean-aindent-mode chruby chinese-pyim bundler buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
