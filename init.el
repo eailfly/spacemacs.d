@@ -36,38 +36,39 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-return-key-behavior nil
-                      auto-completion-tab-key-behavior 'complete
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
-                      )
-     better-defaults
-     (chinese :variables
-              chinese-enable-youdao-dict t
-              )
-     (colors :variables
-             colors-enable-rainbow-indentifiers t
-            )
+     helm
+     ;; (auto-completion :variables
+     ;;                  auto-completion-enable-snippets-in-popup t
+     ;;                  auto-completion-return-key-behavior nil
+     ;;                  auto-completion-tab-key-behavior 'complete
+     ;;                  auto-completion-complete-with-key-sequence nil
+     ;;                  auto-completion-complete-with-key-sequence-delay 0.1
+     ;;                  )
+     ;; better-defaults
+     ;; (chinese :variables
+     ;;          chinese-enable-youdao-dict t
+     ;;          )
+     ;; (colors :variables
+     ;;         colors-enable-rainbow-indentifiers t
+     ;;        )
      ;; django
      emacs-lisp
-     git
+     ;; git
      ;; github
-     html
-     ivy
+     ;; html
+     ;; ivy
      ;; ibuffer
-     javascript
-     markdown
-     org
+     ;; javascript
+     ;; markdown
+     ;; org
      ;; (python :variables
      ;;         python-enable-yapf-format-on-save t
      ;;         )
      (ruby :variables
            ruby-version-manager 'rvm
            )
-     ruby-on-rails
-     shell-scripts
+     ;; ruby-on-rails
+     ;; shell-scripts
      ;; sql
      ;; themes-megapack
      ;; vagrant
@@ -75,10 +76,10 @@ values."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     syntax-checking
+     ;; syntax-checking
      ;; version-control
      ;; ----- Private Layer -----
-     eailfly
+     ;; eailfly
      ;; w3m
      )
    ;; List of additional packages that will be installed without being
@@ -88,16 +89,16 @@ values."
    dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
-   ;; A list of packages that will not be install and loaded.
+   ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '()
-   ;; Defines the behaviour of Spacemacs when downloading packages.
-   ;; Possible values are `used', `used-but-keep-unused' and `all'. `used' will
-   ;; download only explicitly used packages and remove any unused packages as
-   ;; well as their dependencies. `used-but-keep-unused' will download only the
-   ;; used packages but won't delete them if they become unused. `all' will
-   ;; download all the packages regardless if they are used or not and packages
-   ;; won't be deleted by Spacemacs. (default is `used')
-   dotspacemacs-download-packages 'used))
+   ;; Defines the behaviour of Spacemacs when installing packages.
+   ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
+   ;; `used-only' installs only explicitly used packages and uninstall any
+   ;; unused packages as well as their unused dependencies.
+   ;; `used-but-keep-unused' installs only the used packages but won't uninstall
+   ;; them if they become unused. `all' installs *all* packages supported by
+   ;; Spacemacs and never uninstall them. (default is `used-only')
+   dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -118,8 +119,14 @@ values."
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
-   ;; when the current branch is not `develop'. (default t)
-   dotspacemacs-check-for-update t
+   ;; when the current branch is not `develop'. Note that checking for
+   ;; new versions works via git commands, thus it calls GitHub services
+   ;; whenever you start Emacs. (default nil)
+   dotspacemacs-check-for-update nil
+   ;; If non-nil, a form that evaluates to a package directory. For example, to
+   ;; use different package directories for different Emacs versions, set this
+   ;; to `emacs-version'.
+   dotspacemacs-elpa-subdirectory nil
    ;; One of `vim', `emacs' or `hybrid'.
    ;; `hybrid' is like `vim' except that `insert state' is replaced by the
    ;; `hybrid state' with `emacs' key bindings. The value can also be a list
@@ -136,8 +143,8 @@ values."
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
-   ;; List of items to show in startup buffer or an association list of of
-   ;; the form `(list-type . list-size)`. If nil it is disabled.
+   ;; List of items to show in startup buffer or an association list of
+   ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
    ;; `recents' `bookmarks' `projects' `agenda' `todos'."
    dotspacemacs-startup-lists '((recents . 5)
@@ -154,8 +161,8 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '(
-                               ;; "Fantasque Sans Mono"
-                               "Ubuntu Mono"
+                               "Fantasque Sans Mono"
+                               ;; "Ubuntu Mono"
                                :size 20
                                :weight normal
                                :width normal
@@ -219,6 +226,11 @@ values."
    ;; define the position to display `helm', options are `bottom', `top',
    ;; `left', or `right'. (default 'bottom)
    dotspacemacs-helm-position 'bottom
+   ;; Controls fuzzy matching in helm. If set to `always', force fuzzy matching
+   ;; in all non-asynchronous sources. If set to `source', preserve individual
+   ;; source settings. Else, disable fuzzy matching in all sources.
+   ;; (default 'always)
+   dotspacemacs-helm-use-fuzzy 'always
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
    dotspacemacs-enable-paste-transient-state nil
@@ -280,7 +292,7 @@ values."
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
-   ;; If non nil advises quit functions to keep server open when quitting.
+   ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
    ;; List of search tool executable names. Spacemacs uses the first installed
@@ -319,28 +331,28 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; 设置powerline样式
-  (setq powerline-default-separator 'arrow)
-  (spaceline-compile)
-  ;; 打开80字符提示线
-  ;; (add-hook 'prog-mode-hook 'turn-on-fci-mode)
-  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-  (global-fci-mode 1)
-  (setq fci-rule-column 120)
-  ;; 打开缩进线
-  (spacemacs/toggle-indent-guide-globally-on)
-  ;; 显示所有层级缩进线 TODO: Cause indent-guide not work, wait to fix.
-  ;; (setq indent-guide-recursive t)
-  ;; 缩进线字符
-  (setq indent-guide-char "|")
-  ;; JS不检查分号
-  (setq js2-strict-missing-semi-warning nil)
-  ;; CSS颜色自动显示
-  (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
-  ;; 设置chinese-pyin
-  (setq default-input-method "chinese-pyim")
-  (global-set-key (kbd "C-\|") 'toggle-input-method)
-  (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
+;;  ;; 设置powerline样式
+;;  (setq powerline-default-separator 'arrow)
+;;  (spaceline-compile)
+;;  ;; 打开80字符提示线
+;;  ;; (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+;;  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+;;  (global-fci-mode 1)
+;;  (setq fci-rule-column 120)
+;;  ;; 打开缩进线
+;;  (spacemacs/toggle-indent-guide-globally-on)
+;;  ;; 显示所有层级缩进线 TODO: Cause indent-guide not work, wait to fix.
+;;  ;; (setq indent-guide-recursive t)
+;;  ;; 缩进线字符
+;;  (setq indent-guide-char "|")
+;;  ;; JS不检查分号
+;;  (setq js2-strict-missing-semi-warning nil)
+;;  ;; CSS颜色自动显示
+;;  (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
+;;  ;; 设置chinese-pyin
+;;  (setq default-input-method "chinese-pyim")
+;;  ;; (global-set-key (kbd "C-\|") 'toggle-input-method)
+;;  (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -352,7 +364,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (chinese-pyim-greatdict rainbow-mode rainbow-identifiers color-identifiers-mode iedit anzu company-tern dash-functional tern smartparens helm avy flycheck-pos-tip flycheck helm-core projectile names chinese-word-at-point rake inflections org alert log4e gntp markdown-mode haml-mode gitignore-mode magit magit-popup git-commit with-editor web-completion-data company chinese-pyim-basedict pos-tip inf-ruby yasnippet packed anaconda-mode pythonic pinyinlib ace-jump-mode auto-complete wgrep smex ivy-hydra counsel-projectile counsel swiper ivy youdao-dictionary ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spacemacs-theme spaceline smooth-scrolling smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rainbow-delimiters quickrun quelpa pyvenv pytest pyenv-mode py-yapf projectile-rails popwin pony-mode pip-requirements persp-mode paradox pangu-spacing page-break-lines orgit org-repo-todo org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint leuven-theme less-css-mode jade-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-w3m helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flx-ido fish-mode find-by-pinyin-dired fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu emmet-mode elisp-slime-nav define-word cython-mode company-web company-statistics company-shell company-quickhelp company-anaconda column-enforce-mode clean-aindent-mode chruby chinese-pyim bundler buffer-move bracketed-paste auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line ac-ispell))))
+    (rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake chruby bundler inf-ruby ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
