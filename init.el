@@ -37,49 +37,49 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     ;; (auto-completion :variables
-     ;;                  auto-completion-enable-snippets-in-popup t
-     ;;                  auto-completion-return-key-behavior nil
-     ;;                  auto-completion-tab-key-behavior 'complete
-     ;;                  auto-completion-complete-with-key-sequence nil
-     ;;                  auto-completion-complete-with-key-sequence-delay 0.1
-     ;;                  )
-     ;; better-defaults
-     ;; (chinese :variables
-     ;;          chinese-enable-youdao-dict t
-     ;;          )
-     ;; (colors :variables
-     ;;         colors-enable-rainbow-indentifiers t
-     ;;        )
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      )
+     better-defaults
+     (chinese :variables
+              chinese-enable-youdao-dict t
+              )
+     (colors :variables
+             colors-enable-rainbow-indentifiers t
+            )
      ;; django
      emacs-lisp
-     ;; git
+     git
      ;; github
-     ;; html
+     html
      ;; ivy
      ;; ibuffer
      ;; javascript
      ;; markdown
-     ;; org
+     org
      ;; (python :variables
      ;;         python-enable-yapf-format-on-save t
      ;;         )
      (ruby :variables
-           ruby-version-manager 'rvm
+           ;; ruby-version-manager 'rvm
            )
      ;; ruby-on-rails
-     ;; shell-scripts
+     shell-scripts
      ;; sql
-     ;; themes-megapack
+     themes-megapack
      ;; vagrant
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     ;; version-control
+     version-control
      ;; ----- Private Layer -----
-     ;; eailfly
+     eailfly
      ;; w3m
      )
    ;; List of additional packages that will be installed without being
@@ -331,28 +331,26 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-;;  ;; 设置powerline样式
-;;  (setq powerline-default-separator 'arrow)
-;;  (spaceline-compile)
-;;  ;; 打开80字符提示线
-;;  ;; (add-hook 'prog-mode-hook 'turn-on-fci-mode)
-;;  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-;;  (global-fci-mode 1)
-;;  (setq fci-rule-column 120)
-;;  ;; 打开缩进线
-;;  (spacemacs/toggle-indent-guide-globally-on)
-;;  ;; 显示所有层级缩进线 TODO: Cause indent-guide not work, wait to fix.
-;;  ;; (setq indent-guide-recursive t)
-;;  ;; 缩进线字符
-;;  (setq indent-guide-char "|")
-;;  ;; JS不检查分号
-;;  (setq js2-strict-missing-semi-warning nil)
-;;  ;; CSS颜色自动显示
-;;  (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
-;;  ;; 设置chinese-pyin
-;;  (setq default-input-method "chinese-pyim")
-;;  ;; (global-set-key (kbd "C-\|") 'toggle-input-method)
-;;  (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
+;; 设置powerline样式
+(setq powerline-default-separator 'arrow)
+(spaceline-compile)
+;; 打开80字符提示线
+;; (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode 1)
+(setq fci-rule-column 120)
+;; 打开缩进线
+(spacemacs/toggle-indent-guide-globally-on)
+;; 显示所有层级缩进线 TODO: Cause indent-guide not work, wait to fix.
+;; (setq indent-guide-recursive t)
+;; 缩进线字符
+(setq indent-guide-char "|")
+;; CSS颜色自动显示
+(add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
+;; 设置chinese-pyin
+(setq default-input-method "chinese-pyim")
+;; (global-set-key (kbd "C-\|") 'toggle-input-method)
+(setq pyim-default-pinyin-scheme 'pyim-shuangpin)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -364,7 +362,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake chruby bundler inf-ruby ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (chinese-pyim-greatdict quickrun zonokai-theme zenburn-theme zen-and-art-theme youdao-dictionary names chinese-word-at-point web-mode underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stekene-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode seti-theme scss-mode sass-mode reverse-theme rainbow-mode rainbow-identifiers railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pastels-on-dark-theme pangu-spacing orgit organic-green-theme org-projectile org-present org org-pomodoro alert log4e gntp org-download omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme naquadah-theme mwim mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme magit-gitflow lush-theme light-soap-theme less-css-mode jbeans-theme jazz-theme jade-mode ir-black-theme inkpot-theme htmlize heroku-theme hemisu-theme helm-gitignore helm-css-scss helm-company helm-c-yasnippet hc-zenburn-theme haml-mode gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gandalf-theme flatui-theme flatland-theme fish-mode firebelly-theme find-by-pinyin-dired farmhouse-theme evil-magit magit magit-popup git-commit with-editor espresso-theme emmet-mode dracula-theme django-theme diff-hl darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-web web-completion-data company-statistics company-shell company-quickhelp company colorsarenice-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode clues-theme chinese-pyim chinese-pyim-basedict pos-tip cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet yasnippet apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme ace-pinyin pinyinlib ace-jump-mode ac-ispell auto-complete powerline spinner hydra parent-mode projectile pkg-info epl flx smartparens iedit rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake chruby bundler inf-ruby ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
