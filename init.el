@@ -353,6 +353,8 @@ you should place your code here."
 (setq default-input-method "chinese-pyim")
 ;; (global-set-key (kbd "C-\|") 'toggle-input-method)
 (setq pyim-default-pinyin-scheme 'pyim-shuangpin)
+;; fix which-key on emacs 26
+(defalias 'display-buffer-in-major-side-window 'window--make-major-side-window)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
