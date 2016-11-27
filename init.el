@@ -40,6 +40,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;; helm
+     ansible
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-return-key-behavior nil
