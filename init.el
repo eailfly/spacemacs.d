@@ -31,9 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     lua
-     javascript
-     markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -62,8 +59,8 @@ values."
      html
      ivy
      ;; ibuffer
-     ;; javascript
-     ;; markdown
+     javascript
+     markdown
      org
      (python :variables
              python-enable-yapf-format-on-save t
