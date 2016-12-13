@@ -70,7 +70,7 @@ values."
            )
      ruby-on-rails
      shell-scripts
-     ;; sql
+     sql
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
