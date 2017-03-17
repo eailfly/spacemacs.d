@@ -68,7 +68,8 @@ values."
              python-enable-yapf-format-on-save t
              )
      (ranger :variables
-             ranger-show-preview t)
+             ranger-show-preview t
+             )
      (ruby :variables
            ruby-version-manager 'rvm
            )
@@ -370,6 +371,16 @@ you should place your code here."
   )
 ;; Set Neotree's theme
 (setq neo-theme 'icons)
+;; Set the max file size in ranger's preview(in MB)
+(setq ranger-max-preview-size 5)
+;; Set range don't show dotfile in default
+(setq ranger-show-hidden 'nil)
+;; Set range preview mode through find-file(will add file to the history)
+;; (setq ranger-show-literal 'nil)
+;; Don't preview binary file
+(setq ranger-dont-show-binary t)
+;; Setting ranger as Default Directory Handler
+(ranger-override-dired-mode t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
