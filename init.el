@@ -43,52 +43,52 @@ This function should only modify configuration layer settings."
                               auto-completion-complete-with-key-sequence nil
                               auto-completion-complete-with-key-sequence-delay 0.1
                               )
-             better-defaults
-             (chinese :variables
-                      chinese-enable-youdao-dict t
-                      chinese-enable-fcitx t
-                      )
-             (colors :variables
-                     colors-enable-rainbow-indentifiers t
-                     )
-             csv
-             django
-             emacs-lisp
-             git
-             ;; github
-             html
-             ivy
-             ;; ibuffer
-             ;; javascript
-             markdown
-             org
-             (python :variables
-                     python-enable-yapf-format-on-save t
-                     )
-             (ranger :variables
-                     ranger-show-preview t
-                     )
-             restructuredtext
-             ;; (ruby :variables
-             ;; ruby-version-manager 'rvm
-             ;; )
-             ;; ruby-on-rails
-             semantic
-             shell-scripts
-             sql
-             ;; (shell :variables
-             ;;        shell-default-height 30
-             ;;        shell-default-position 'bottom)
-             ;; spell-checking
-             syntax-checking
-             themes-megapack
-             ;; vagrant
-             version-control
-             yaml
-             ;; ----- Private Layer -----
-             eailfly
-             ;; w3m
+     better-defaults
+     (chinese :variables
+              chinese-enable-youdao-dict t
+              chinese-enable-fcitx t
+              )
+     (colors :variables
+             colors-enable-rainbow-indentifiers t
              )
+     csv
+     django
+     emacs-lisp
+     git
+     ;; github
+     html
+     ivy
+     ;; ibuffer
+     ;; javascript
+     markdown
+     org
+     (python :variables
+             python-enable-yapf-format-on-save t
+             )
+     (ranger :variables
+             ranger-show-preview t
+             )
+     restructuredtext
+     ;; (ruby :variables
+     ;; ruby-version-manager 'rvm
+     ;; )
+     ;; ruby-on-rails
+     semantic
+     shell-scripts
+     sql
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
+     ;; spell-checking
+     syntax-checking
+     themes-megapack
+     ;; vagrant
+     version-control
+     yaml
+     ;; ----- Private Layer -----
+     eailfly
+     ;; w3m
+     )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
